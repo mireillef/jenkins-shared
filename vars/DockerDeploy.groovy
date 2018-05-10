@@ -1,6 +1,3 @@
-def NotifySuccess() {
-  slackSend (color: '#FFFF00', message: "Build: ${env.JOB_NAME} Number: [${env.BUILD_NUMBER}] has succeeded.")
-}
 def call(String name = 'human') {
 node {
  stage ('Docker build') {
@@ -28,10 +25,13 @@ node {
   try {
             sh "wget http://localhost:8888/directeam -O /dev/null"
             return true
-	    NotifySuccess()
         } catch (Exception e) {
             throw e;
     }
     }
     }
     }
+def NotifySuccess() {
+slackSend (color: '#FFFF00', message: "Build: ${env.JOB_NAME} Number: [${env.BUILD_NUMBER}] has succeeded.")
+}
+NotifySuccess()
