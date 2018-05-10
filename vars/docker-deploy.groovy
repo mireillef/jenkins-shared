@@ -1,3 +1,4 @@
+def call(String name = 'human') {
 node {
  stage ('Docker build') {
  sh "ls -l jenkins-project; if [ \$? -eq 0 ]; then rm -rf jenkins-project; git clone https://github.com/mireillef/jenkins-project.git ; else git clone https://github.com/mireillef/jenkins-project.git; fi" 
@@ -29,4 +30,4 @@ node {
     }
     }
     }
-
+    }
